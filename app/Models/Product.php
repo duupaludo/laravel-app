@@ -2,14 +2,18 @@
 
 namespace App\Models;
 
+use App\Media\ProductPaths;
+use App\Media\ThumbUploads;
 use App\Tenant\TenantModels;
 use Collective\Html\Eloquent\FormAccessible;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    use ThumbUploads;
+    use ProductPaths;
     use TenantModels, Uuid, FormAccessible;
-    protected $fillable = ['name','description','price', 'category_id'];
+    protected $fillable = ['name','description','price', 'thumb', 'category_id'];
 
 
     public function formCategoryUuidAttribute(){

@@ -55,6 +55,11 @@ return [
             'visibility' => 'public',
         ],
 
+        'images_local' => [
+            'driver' => 'local',
+            'root' =>storage_path('app/images_test')
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

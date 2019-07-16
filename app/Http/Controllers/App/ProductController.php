@@ -26,7 +26,7 @@ class ProductController extends Controller
         $categoryUuid = $request->get('category_uuid');
         $category = Category::whereUuid($categoryUuid)->first();
         Product::create($request->all() + ['category_id' => $category->id]);
-        return redirect()->route('app.products.index')->;
+        return redirect()->route('app.products.index');
     }
 
     public function show(Product $product)
