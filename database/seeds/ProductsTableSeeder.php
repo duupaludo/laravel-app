@@ -22,7 +22,8 @@ class ProductsTableSeeder extends Seeder
             ->each(function (Product $product) use ($categories, $repository, $collectionThumbs) {
                 $tenantId = rand(1, 3);
                 $category = $categories->where(\Tenant::getTenantField(), $tenantId)->random();
-                $repository->uploadThumb($product->id, $collectionThumbs->random());
+                //dd($product);
+                $product->uploadThumb($product, $collectionThumbs->random());
                 $product->category_id = $category->id; //2
                 $product->company_id = $tenantId;  //1
                 $product->save();

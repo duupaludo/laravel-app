@@ -26,7 +26,9 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function uploadThumb(UploadedFile $file){}
+    public function uploadThumb($model, UploadedFile $file){
+        $this->upload($model, $file);
+    }
 }
 
 //'category_uuid'
