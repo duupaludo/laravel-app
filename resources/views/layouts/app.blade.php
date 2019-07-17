@@ -43,7 +43,7 @@
                             <a class="nav-link" href="{{ route('app.products.index') }}">{{ __('Produtos') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">{{ __('Ofertas') }}</a>
+                            <a class="nav-link" href="{{ route('app.offers.index') }}">{{ __('Ofertas') }}</a>
                         </li>
                     @endauth
                 </ul>

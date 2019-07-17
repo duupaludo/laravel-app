@@ -23,6 +23,7 @@ Route::group(['prefix' => 'app', 'as' => 'app.'], function () {
             });
             Route::resource('categories', 'CategoryController');
             Route::resource('products', 'ProductController');
+            Route::resource('offers', 'OfferController');
         });
     });
     Auth::routes(['register' => false]); //app.login

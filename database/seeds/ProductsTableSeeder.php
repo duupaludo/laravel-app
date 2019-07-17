@@ -15,14 +15,14 @@ class ProductsTableSeeder extends Seeder
     {
         Tenant::setTenant(null);
         $categories = \App\Models\Category::all();
-        //$collectionThumbs = $this->getThumbs();
-        //$repository = Product::class;
+        $collectionThumbs = $this->getThumbs();
+        $repository = Product::class;
         factory(Product::class, 300)
             ->make()
-            ->each(function (Product $product) use ($categories) {
+            ->each(function (Product $product) use ($categories, $repository, $collectionThumbs) {
                 $tenantId = rand(1, 3);
                 $category = $categories->where(\Tenant::getTenantField(), $tenantId)->random();
-                //$repository->uploadThumb($product->id, $collectionThumbs->random());
+                $repository->uploadThumb($product->id, $collectionThumbs->random());
                 $product->category_id = $category->id; //2
                 $product->company_id = $tenantId;  //1
                 $product->save();

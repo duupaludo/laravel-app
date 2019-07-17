@@ -7,6 +7,7 @@ use App\Media\ThumbUploads;
 use App\Tenant\TenantModels;
 use Collective\Html\Eloquent\FormAccessible;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\UploadedFile;
 
 class Product extends Model
 {
@@ -24,6 +25,8 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function uploadThumb(UploadedFile $file){}
 }
 
 //'category_uuid'
