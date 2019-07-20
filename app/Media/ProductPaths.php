@@ -35,5 +35,15 @@ trait ProductPaths
         return $this->getAbsolutePath($this->getStorage(), $this->thumb_small_relative);
     }
 
+    public function getThumbAssetAttribute()
+    {
+        return route('app.products.thumb_asset', ['product' => $this->id]);
+    }
+
+    public function getThumbSmallAssetAttribute()
+    {
+        return route('app.products.thumb_small_asset', ['product' => $this->id]);
+    }
+
 
 }

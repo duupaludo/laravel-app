@@ -27,6 +27,7 @@ class ProductRequest extends FormRequest
             'name' => 'required|max:255',
             'description' => 'required',
             'price' => 'required|numeric',
+            'thumb' => 'required|max:1024',
             'category_uuid' => 'required|exists:categories,uuid,'.\Tenant::ruleExists(),
         ];
     }

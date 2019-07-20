@@ -23,7 +23,7 @@
             <tr>
                 <td>{{ $product->name }}</td>
                 <td>{{ $product->price }}</td>
-                <td><img src="https://www.sccpre.cat/mypng/full/69-692552_hallingdal-egg-office-chair.png" width="80"/></td>
+                <td><img src="{{ $product->thumb_small_asset }}" width="80"/></td>
                 <td>{{ $product->category->name }}</td>
                 <td><span class="badge badge-success">Secondary</span></td>
                 <td>

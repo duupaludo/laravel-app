@@ -22,6 +22,10 @@ Route::group(['prefix' => 'app', 'as' => 'app.'], function () {
                 return view('app.dashboard');
             });
             Route::resource('categories', 'CategoryController');
+            Route::get('products/{product}/thumb_asset', 'ProductController@thumbAsset')
+                ->name('products.thumb_asset');
+            Route::get('products/{product}/thumb_small_asset', 'ProductController@thumbSmallAsset')
+                ->name('products.thumb_small_asset');
             Route::resource('products', 'ProductController');
             Route::resource('offers', 'OfferController');
         });

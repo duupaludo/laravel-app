@@ -13,20 +13,20 @@ class ProductsTableSeeder extends Seeder
      */
     public function run()
     {
+        $rootPath = config('filesystems.disks.images_local.root');
+        \File::deleteDirectory($rootPath, true);
         Tenant::setTenant(null);
         $categories = \App\Models\Category::all();
         $collectionThumbs = $this->getThumbs();
-        $repository = Product::class;
-        factory(Product::class, 300)
+        factory(Product::class, 30)
             ->make()
-            ->each(function (Product $product) use ($categories, $repository, $collectionThumbs) {
+            ->each(function (Product $product) use ($categories, $collectionThumbs) {
                 $tenantId = rand(1, 3);
                 $category = $categories->where(\Tenant::getTenantField(), $tenantId)->random();
-                //dd($product);
-                $product->uploadThumb($product, $collectionThumbs->random());
                 $product->category_id = $category->id; //2
                 $product->company_id = $tenantId;  //1
                 $product->save();
+                $product->uploadThumb($product->id, $collectionThumbs->random());
             });
     }
 

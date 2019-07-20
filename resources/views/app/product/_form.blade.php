@@ -13,6 +13,11 @@
     {{ Form::number('price',null,['step' => '0.01','class' => 'form-control'.($errors->has('price')?' is-invalid':'')]) }}
 @endcomponent
 
+@component('form._form_group',['field' => 'thumb'])
+    {{ Form::label('thumb','Imagem') }}
+    {{ Form::file('thumb',['class' => 'form-control'.($errors->has('thumb')?' is-invalid':'')]) }}
+@endcomponent
+
 @component('form._form_group',['field' => 'category_id'])
     {{ Form::label('category_uuid','Categoria') }}
     {{ Form::select('category_uuid',$categories->pluck('name','uuid'),null,['class' => 'form-control'.($errors->has('category_id')?' is-invalid':'')]) }}

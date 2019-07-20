@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\App;
 
 use App\Http\Controllers\Controller;
+use App\Media\ThumbUploads;
 use App\Models\Category;
 use App\Models\Product;
 use App\Http\Requests\ProductRequest;
 
 class ProductController extends Controller
 {
+    use ThumbUploads;
+
     public function index()
     {
         $products = Product::all();
@@ -25,7 +28,8 @@ class ProductController extends Controller
     {
         $categoryUuid = $request->get('category_uuid');
         $category = Category::whereUuid($categoryUuid)->first();
-        Product::create($request->all() + ['category_id' => $category->id]);
+        $model = Product::create($request->all() + ['category_id' => $category->id]);
+        $model->uploadThumb($model->id, $request->file('thumb'));
         return redirect()->route('app.products.index');
     }
 
@@ -52,5 +56,15 @@ class ProductController extends Controller
     {
         $product->delete();
         return redirect()->route('app.products.index');
+    }
+
+    public function thumbAsset(Product $product)
+    {
+        return response()->download($product->thumb_path);
+    }
+
+    public function thumbSmallAsset(Product $product)
+    {
+        return response()->download($product->thumb_small_path);
     }
 }
